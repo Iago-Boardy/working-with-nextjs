@@ -2,39 +2,40 @@ import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
 import db from "@/db/db";
 import { Suspense } from "react";
 
-function getProducts() {
-  return db.product.findMany({ where: { isAvaliableForPurchase: true }, orderBy: {name: "asc"} });
+async function getProducts() {
+  return await db.product.findMany({ 
+    where: { isAvaliableForPurchase: true }, 
+    orderBy: { name: "asc" } 
+  });
 }
 
 export default function ProductsPage() {
   return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <Suspense fallback={<SkeletonGrid count={8} />}>
+        <ProductList />
+      </Suspense>
+    </div>
+  );
+}
+
+async function ProductList() {
+  const products = await getProducts();
+
+  return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
-        <Suspense
-          fallback={
-            <>
-              <ProductCardSkeleton />
-              <ProductCardSkeleton />
-              <ProductCardSkeleton />
-              <ProductCardSkeleton />
-              <ProductCardSkeleton />
-              <ProductCardSkeleton />
-            </>
-          }
-        >
-          <ProductSuspense />
-        </Suspense>
-      </div>
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
+      ))}
     </>
   );
 }
 
-async function ProductSuspense() {
-  const products = await getProducts();
+function SkeletonGrid({ count }: { count: number }) {
   return (
     <>
-      {products.map(product => (
-        <ProductCard key={product.id} {...product} />
+      {Array.from({ length: count }).map((_, index) => (
+        <ProductCardSkeleton key={index} />
       ))}
     </>
   );

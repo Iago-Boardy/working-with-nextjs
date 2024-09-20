@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import Link from "next/link"; // Importar o Link do Next.js
+import Link from "next/link";
 import { Children, ComponentProps, ReactNode } from "react";
 
 export default function Nav({ children }: { children: ReactNode }) {
