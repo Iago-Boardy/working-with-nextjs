@@ -1,35 +1,40 @@
-<h1 align="center" id="title">Ecommerce-model 🛒</h1>
+<h1 align="center">📊 Florybal Website</h1>
 
-<p id="description">An e-commerce model designed to learn basic functions of Next.js, SQLite, Prisma, and other related technologies. (CURRENTLY IN DEVELOPMENT)</p>
+<p id="description">This project is an online sales platform for Florybal, a renowned chocolate brand known for its quality and unmatched flavor. Developed using the Next.js framework, this project aims to provide a fast, intuitive, and enjoyable shopping experience for chocolate lovers. All code is written in Portuguese (BR).</p>
 
-<h2>🧐 Features</h2>
+## 🧐 Features
 
-Here are some of the project's key features:
+Here are some of the features of the project:
 
-* Basic e-commerce functionalities
-* SQLite database for managing information
-* Integration with Prisma for data handling
-* Responsive design with Tailwind CSS
+- 🛍️ **Product Catalog:** Display a wide range of chocolates, including details such as description, price, and customer reviews.
+- 🛒 **Shopping Cart:** Functionality to add, remove, and update the quantity of products in the shopping cart.
+- 💳 **Checkout Process:** Integration with payment systems to ensure a secure and efficient checkout.
+- 🔐 **User Authentication:** Login and registration system for customers, including password recovery and authentication via social networks.
+- 🛠️ **Admin Panel:** Restricted area to manage products, orders, and users, with differentiated access permissions.
+- 🔍 **Search and Filtering:** Search functionality and advanced filters to facilitate finding specific products.
   
-<h2>💻 Built with</h2>
+## 💻 Built with
 
 Technologies used in the project:
 
-* Next.js
-* Tailwind CSS
-* Prisma
-* SQLite
+- Next.js
+- React
+- Tailwind CSS
 
-<h2>📦 Getting Started</h2>
+## 🎉 Contributors
 
-To get started with this project, follow these steps:
+#### 👨‍💻 Developers
 
-1. . Clone the repository: `git clone https://github.com/yourusername/ecommerce-model.git`
-2. . Navigate to the project directory: `cd ecommerce-model`
-3. . Install the dependencies: `npm install`
-4. . Set up the database: `npx prisma migrate dev`
-5. . Run the development server: `npm run dev`
+- **Gabriel**
+  - GitHub: [GabrielGMachado](https://github.com/GabrielGMachado)
+  - Email: bielgaelzermachado@gmail.com
+  - Role: Frontend Developer
 
-For detailed information on how to use and customize the project, please refer to the [Next.js documentation](https://nextjs.org/docs) and [Prisma documentation](https://www.prisma.io/docs).
+- **Iago**
+  - GitHub: [Iago-Boardy](https://github.com/Iago-Boardy)
+  - Email: iagogol2006@gmail.com
+  - Role: Backend Developer
 
+---
 
+We hope you enjoy our website!
