@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Definições de cores para o tema claro */
+    --background: 0 0% 100%; /* Branco puro */
+    --foreground: 222.2 84% 4.9%; /* Tom muito escuro de azul */
+    --card: 0 0% 100%; /* Branco puro */
+    --card-foreground: 222.2 84% 4.9%; /* Tom muito escuro de azul */
+    --popover: 0 0% 100%; /* Branco puro */
+    --popover-foreground: 222.2 84% 4.9%; /* Tom muito escuro de azul */
+    --primary: 222.2 47.4% 11.2%; /* Azul escuro com saturação média e baixa luminosidade */
+    --primary-foreground: 210 40% 98%; /* Azul muito claro */
+    --secondary: 210 40% 96.1%; /* Azul claro */
+    --secondary-foreground: 222.2 47.4% 11.2%; /* Azul escuro */
+    --muted: 210 40% 96.1%; /* Azul claro */
+    --muted-foreground: 215.4 16.3% 46.9%; /* Tom médio escuro de azul */
+    --accent: 210 40% 96.1%; /* Azul claro */
+    --accent-foreground: 222.2 47.4% 11.2%; /* Azul escuro */
+    --destructive: 0 84.2% 60.2%; /* Vermelho claro */
+    --destructive-foreground: 210 40% 98%; /* Azul muito claro */
+    --border: 214.3 31.8% 91.4%; /* Azul claro */
+    --input: 214.3 31.8% 91.4%; /* Azul claro */
+    --ring: 222.2 84% 4.9%; /* Tom muito escuro de azul */
+    --radius: 0.5rem; /* Raio de arredondamento das bordas */
+    --chart-1: 12 76% 61%; /* Laranja */
+    --chart-2: 173 58% 39%; /* Verde-azulado */
+    --chart-3: 197 37% 24%; /* Azul escuro */
+    --chart-4: 43 74% 66%; /* Amarelo */
+    --chart-5: 27 87% 67%; /* Laranja */
+  }
+
+  .dark {
+    /* Definições de cores para o tema escuro */
+    --background: 222.2 84% 4.9%; /* Azul muito escuro */
+    --foreground: 210 40% 98%; /* Azul muito claro */
+    --card: 222.2 84% 4.9%; /* Azul muito escuro */
+    --card-foreground: 210 40% 98%; /* Azul muito claro */
+    --popover: 222.2 84% 4.9%; /* Azul muito escuro */
+    --popover-foreground: 210 40% 98%; /* Azul muito claro */
+    --primary: 210 40% 98%; /* Azul muito claro */
+    --primary-foreground: 222.2 47.4% 11.2%; /* Azul escuro */
+    --secondary: 217.2 32.6% 17.5%; /* Azul escuro com saturação baixa */
+    --secondary-foreground: 210 40% 98%; /* Azul muito claro */
+    --muted: 217.2 32.6% 17.5%; /* Azul escuro com saturação baixa */
+    --muted-foreground: 215 20.2% 65.1%; /* Azul médio claro */
+    --accent: 217.2 32.6% 17.5%; /* Azul escuro com saturação baixa */
+    --accent-foreground: 210 40% 98%; /* Azul muito claro */
+    --destructive: 0 62.8% 30.6%; /* Vermelho escuro */
+    --destructive-foreground: 210 40% 98%; /* Azul muito claro */
+    --border: 217.2 32.6% 17.5%; /* Azul escuro com saturação baixa */
+    --input: 217.2 32.6% 17.5%; /* Azul escuro com saturação baixa */
+    --ring: 212.7 26.8% 83.9%; /* Azul claro */
+    --chart-1: 220 70% 50%; /* Azul claro */
+    --chart-2: 160 60% 45%; /* Verde médio */
+    --chart-3: 30 80% 55%; /* Laranja */
+    --chart-4: 280 65% 60%; /* Roxo */
+    --chart-5: 340 75% 55%; /* Vermelho */
+  }
+}
+
+@layer base {
+  /* Aplicando bordas padrão para todos os elementos */
+  * {
+    @apply border-border;
+  }
+  /* Estilizando o corpo da página com cores de fundo e texto */
+  body {
+    @apply bg-background text-foreground;
+  }
+}
