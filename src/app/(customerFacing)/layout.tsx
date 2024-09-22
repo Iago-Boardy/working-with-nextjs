@@ -1,20 +1,17 @@
-import Nav, { NavLink } from "@/components/Nav";
+import Sidebar from "@/components/Sidebar";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>
-    <Nav>
-      <NavLink href="/">Home</NavLink>
-      <NavLink href="/products">Produtos</NavLink>
-      <NavLink href="/orders">Meus Pedidos</NavLink>
-    </Nav>
-    
-    
-    <div className="container my-6">{children}</div>
-  </>
+  return (
+    <div className="">
+      <Sidebar />
+      
+      <div className="flex justify-center my-6 flex-grow">{children}</div>
+    </div>
+  );
 }

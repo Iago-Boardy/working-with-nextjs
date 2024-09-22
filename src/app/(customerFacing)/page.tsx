@@ -5,8 +5,11 @@ import { Product } from "@prisma/client";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
+import Image from "next/image";
+import fulls from "@/app/assets/banner-fita-regua.webp";
+import fullhs from "@/app/assets/banner-cremosissimo-2.webp";
 
-function getMostPopularProducts() {
+async function getMostPopularProducts(): Promise<Product[]> {
   return db.product.findMany({
     where: { isAvaliableForPurchase: true },
     orderBy: { orders: { _count: "desc" } },
@@ -14,7 +17,7 @@ function getMostPopularProducts() {
   });
 }
 
-function getNewestProducts() {
+async function getNewestProducts(): Promise<Product[]> {
   return db.product.findMany({
     where: { isAvaliableForPurchase: true },
     orderBy: { createdAt: "desc" },
@@ -24,9 +27,19 @@ function getNewestProducts() {
 
 export default function HomePage() {
   return (
-    <main className="space-y-12">
-      <ProductGridSection title="Mais Populares" productsFetcher={getMostPopularProducts} />
-      <ProductGridSection title="Recentes" productsFetcher={getNewestProducts} />
+    <main className="overflow-x-hidden">
+      <Banner src={fulls} alt="banner" />
+
+      <div className="container mx-auto px-4 max-w-[1164px]">
+        <ProductGridSection title="Mais Populares" productsFetcher={getMostPopularProducts} />
+        <LargeBox />
+        <PlaceholderSection />
+        <SectionTitle title="-- Produtos Sazonais --" />
+        <ProductGridSection title="Recentes" productsFetcher={getNewestProducts} />
+      </div>
+
+
+      <Banner src={fullhs} alt="completo" />
     </main>
   );
 }
@@ -39,17 +52,16 @@ type ProductGridSectionProps = {
 function ProductGridSection({ productsFetcher, title }: ProductGridSectionProps) {
   return (
     <div className="space-y-4">
-      <div className="flex gap-4 ">
+      <div className="flex gap-4 items-center">
         <h2 className="text-3xl font-bold">{title}</h2>
         <Button asChild variant={"outline"}>
-          <Link href="/products" className="space-x-2">
+          <Link href="/products" className="space-x-2 flex items-center">
             <span>Ver Mais</span>
             <ArrowRight className="size-4" />
           </Link>
         </Button>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <Suspense
           fallback={
             <>
@@ -70,9 +82,38 @@ async function ProductSuspense({ productsFetcher }: { productsFetcher: () => Pro
   const products = await productsFetcher();
   return (
     <>
-      {products.map(product => (
+      {products.map((product) => (
         <ProductCard key={product.id} {...product} />
       ))}
     </>
+  );
+}
+
+interface BannerProps {
+  src: StaticImageData;
+  alt: string;
+}
+
+function Banner({ src, alt }: BannerProps) {
+  return <Image src={src} className="w-full h-auto" alt={alt} priority />;
+}
+
+function PlaceholderSection() {
+  return <div className="w-full border border-black h-96 shadow-md mb-8 mt-8 rounded-xl"></div>;
+}
+
+function LargeBox() {
+  return <div className="w-full h-64 bg-gray-200 mb-8">/* Conteúdo da LargeBox */</div>;
+}
+
+interface SectionTitleProps {
+  title: string;
+}
+
+function SectionTitle({ title }: SectionTitleProps) {
+  return (
+    <div className="flex justify-center mb-8">
+      <h1 className="text-2xl font-semibold">{title}</h1>
+    </div>
   );
 }
