@@ -3,7 +3,7 @@ import db from "@/db/db";
 import { formatCurrency, formatNumber } from "@/lib/formatters";
 
 async function getSalesData() {
-  const data = await db.order.aggregate({ //Pegando infos da table ORDER
+  const data = await db.order.aggregate({
     _sum: { pricePaidInCents: true},
     _count: true
   })
