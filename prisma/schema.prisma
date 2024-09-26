@@ -11,8 +11,7 @@ model Product {
   id                     String                 @id @default(uuid())
   name                   String
   priceInCents           Int
-  filePath               String
-  imagePath              String
+  imagePath              String 
   description            String
   isAvaliableForPurchase Boolean                @default(true)
   createdAt              DateTime               @default(now())
