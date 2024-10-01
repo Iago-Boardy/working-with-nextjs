@@ -8,22 +8,24 @@ import { Suspense } from "react";
 import Image from "next/image";
 import fulls from "@/app/assets/banner-fita-regua.webp";
 import fullhs from "@/app/assets/banner-cremosissimo-2.webp";
+import { cache } from "@/lib/cache";
 
-async function getMostPopularProducts(): Promise<Product[]> {
+const getMostPopularProducts = cache(() =>  {
   return db.product.findMany({
     where: { isAvaliableForPurchase: true },
     orderBy: { orders: { _count: "desc" } },
     take: 6,
   });
-}
+}, ["/", "getMostPopularProducts"], {revalidate: 60 * 60 * 24})    //Essa chave deve ser unica, e foi configurado o nextCache para isso no lib do projeto, visando melhor desempenho do projeto
 
-async function getNewestProducts(): Promise<Product[]> {
+const getNewestProducts = cache(() => {
   return db.product.findMany({
     where: { isAvaliableForPurchase: true },
     orderBy: { createdAt: "desc" },
     take: 6,
   });
-}
+}, ["/", "getNewestProducts"], { revalidate: 60 * 60 * 24 }); // Unique key and revalidate after 24 hours
+
 
 export default function HomePage() {
   return (
