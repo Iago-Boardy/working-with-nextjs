@@ -51,11 +51,12 @@ export function ProductCard({ id, name, priceInCents, description, imagePath }: 
         <h1 className="text-[18px] text-yellow-950 font-semibold">
           {formatCurrency(priceInCents / 100)}
         </h1>
-        <Link href={`/products/${id}/purchase`}>
+        <Link href={`/products/${id}`}>
           <Button size="sm" className="w-full border rounded-[8px] py-1 text-white bg-yellow-950 hover:bg-white hover:text-yellow-950 hover:border-yellow-950 transition duration-300">
-            Comprar
+            Ver detalhes
           </Button>
         </Link>
+
       </div>
     </div>
   );
