@@ -1,6 +1,7 @@
 import db from "@/db/db"
 import { notFound } from "next/navigation"
 import Stripe from "stripe"
+import CheckoutForm from "./_components/CheckoutForm"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -9,7 +10,15 @@ export default async function PurchasePage( { params: { id}} : {params: {id: str
   where: {id} })
   if (product == null) return notFound();
 
-  stripe.paymentIntents.create
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: product.priceInCents,
+    currency: "BRL", 
+    metadata: { productId: product.id}
+  })
 
-  return <h1>Hi Bro</h1>
+  if (paymentIntent.client_secret == null) {
+    throw Error("Stripe falhou na hora de realizar pagamentos")
+  }
+
+  return <CheckoutForm product={product} clientSecret = {paymentIntent.client_secret}/>
 }
