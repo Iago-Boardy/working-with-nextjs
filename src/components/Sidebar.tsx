@@ -18,8 +18,8 @@ interface MenuItem {
 const menuList: MenuItem[] = [
   { link: "/", icon: <HomeIcon className="w-6 h-6" />, text: "Início" },
   { link: "/products", icon: <PackageSearch className="w-6 h-6" />, text: "Produtos" },
-  { link: "/products/favorites", icon: <Heart className="w-6 h-6" />, text: "Favoritos" },
-  { link: "/carrinho/carrinho", icon: <ShoppingCart className="w-6 h-6" />, text: "Carrinho" },
+  { link: "/favorites", icon: <Heart className="w-6 h-6" />, text: "Favoritos" },
+  { link: "/cart", icon: <ShoppingCart className="w-6 h-6" />, text: "Carrinho" },
   { link: "/historico/historico", icon: <History className="w-6 h-6" />, text: "Histórico" },
 ];
 
