@@ -27,6 +27,16 @@ export default async function ProductDetailPage({ params: { id } }: { params: { 
             <button className="bg-yellow-950 text-white px-6 py-2 rounded-md hover:bg-yellow-800 transition">
               Comprar
             </button>
+
+            <div className="mt-4 flex gap-4">
+            <button className="bg-gray-400 text-white px-6 py-2 rounded-md hover:bg-gray-500 transition">
+              Favoritar
+            </button>
+
+            <button className="bg-yellow-950 text-white px-6 py-2 rounded-md hover:bg-yellow-800 transition">
+              Adicionar ao Carrinho
+            </button>
+          </div>
           </Link>
         </div>
       </div>
