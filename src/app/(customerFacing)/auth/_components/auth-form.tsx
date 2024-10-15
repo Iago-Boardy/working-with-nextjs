@@ -1,34 +1,39 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { AlertCircle, Loader2, Mail } from 'lucide-react'
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState } from 'react';
+import { signIn } from 'next-auth/react'; // Import the signIn function
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { AlertCircle, Loader2, Mail } from 'lucide-react';
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export function AuthForm() {
-  const [email, setEmail] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log(email)
-   // e.preventDefault()
-   // setIsLoading(true)
-    //setMessage(null)
+    e.preventDefault();  // Prevent form from refreshing
+    setIsLoading(true);   // Set loading state
+    setMessage(null);     // Clear any previous messages
 
     try {
-      // TODO: Implement your Magic Link authentication logic here
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      setMessage({ type: 'success', text: 'Magic link sent! Check your email.' })
+      // Call NextAuth signIn function for email authentication
+      const res = await signIn('email', { email, redirect: false });  // Do not redirect automatically
+
+      if (res?.error) {
+        setMessage({ type: 'error', text: 'Failed to send magic link. Please try again.' });
+      } else {
+        setMessage({ type: 'success', text: 'Magic link sent! Check your email.' });
+      }
     } catch (error) {
-      setMessage({ type: 'error', text: 'Failed to send magic link. Please try again.' })
+      setMessage({ type: 'error', text: 'An error occurred. Please try again later.' });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);  // End loading state
     }
-  }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -84,5 +89,5 @@ export function AuthForm() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
