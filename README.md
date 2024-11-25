@@ -1,6 +1,6 @@
 <h1 align="center" id="title">NextJS Project 🛒</h1>
 
-<p id="description">An e-commerce model designed to learn basic functions of Next.js, SQLite, Prisma, and other related technologies. (CURRENTLY IN DEVELOPMENT)</p>
+<p id="description">An e-commerce model designed to learn basic functions of Next.js, SQLite, Prisma, and other related technologies.</p>
 
 <h2>🧐 Features</h2>
 
